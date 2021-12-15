@@ -7,12 +7,6 @@
 
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,17 +16,14 @@ body {
 }
 
 code {
-  /* font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace; */
+
 }
 
 #quote-box {
   display: table;
   padding: 2em;
-  /* margin: 2em; */
   width: 100%;
-  max-width: 40rem;
-  /* border: 1px solid black; */
+  max-width: 450px;
   border-radius: 3px;
   background-color: white;
   justify-content: center;
@@ -53,7 +44,6 @@ code {
 }
 
 button {
-  /* width: 200px; */
   padding: 10px;
   color: white;
   border-style: none;
@@ -67,8 +57,11 @@ card {
 
 .button {
   background-color: blue;
-  /* height: 30px; */
+  text-align: center;
+  float: left;
   justify-content: center;
-  padding: 10px;
+  padding: 10px 15px;
   color: white;
+  border-style: none;
+  border-radius: 3px;
 }

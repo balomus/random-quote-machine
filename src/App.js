@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function App() {
 
@@ -19,49 +19,51 @@ function App() {
 
   const [data, setData] = useState(null);
 
-    async function updateQuote() {
-        try {
-            const response = await fetch("https://api.quotable.io/random");
-            const {statusCode, statusMessage, ...data} = await response.json();
-            if (!response.ok) throw new Error(`${statusCode} ${statusMessage}`);
-            setData(data);
-            document.body.style.backgroundColor = 
-              document.body.style.color = 
-              document.getElementById("new-quote").style.backgroundColor = 
-              colors[getRandomNum(0, colors.length - 1)];
-        } catch (error) {
-            console.error(error);
-            setData({content: "Oops... Something went wrong"});
-        }
-    }
 
-    const getRandomNum = (min, max) => {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    }
+  async function updateQuote() {
+      try {
+          const response = await fetch("https://api.quotable.io/random");
+          const {statusCode, statusMessage, ...data} = await response.json();
+          if (!response.ok) throw new Error(`${statusCode} ${statusMessage}`);
+          setData(data);
+          document.body.style.backgroundColor = 
+            document.body.style.color = 
+            document.getElementById("new-quote").style.backgroundColor = 
+            document.getElementById("twitter-button").style.backgroundColor =
+            colors[getRandomNum(0, colors.length - 1)];
+      } catch (error) {
+          console.error(error);
+          setData({content: "Oops... Something went wrong"});
+      }
+  }
 
-    useEffect(() => {
-      console.log('use effect ran');
-      updateQuote();
-    }, []);
+  const getRandomNum = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
-    if (!data) return null;
+  useEffect(() => {
+    console.log('use effect ran');
+    updateQuote();
+  }, []);
 
-    return ( 
-      <div id="quote-box">
-        <div id="text">
-            <p><i className="fas fa-quote-left"></i> {data.content}</p>
-        </div>
-        <div id="author">
-          <p>- {data.author}</p>
-        </div>
-        <div id="buttons">
-          <a href="" className="button"><i className="fab fa-twitter"></i></a>
-          <button id="new-quote" onClick={updateQuote}>New Quote</button>
-        </div>
+  if (!data) return null;
+
+  return ( 
+    <div id="quote-box">
+      <div id="text">
+          <p><i className="fas fa-quote-left"></i> {data.content}</p>
       </div>
-     );
+      <div id="author">
+        <p>- {data.author}</p>
+      </div>
+      <div id="buttons">
+        <a href={`https://twitter.com/intent/tweet?text="${data.content}" - ${data.author}`} className="button" id="twitter-button" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+        <button id="new-quote" onClick={updateQuote}>New Quote</button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
