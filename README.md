@@ -5,5 +5,5 @@ This is a simple React app that I created for FreeCodeCamp.org's Random Quote Ma
 https://balomus.github.io/random-quote-machine/
 
 ## Credits
-Credits to @lukePeavey for the quotable API, which I am using to generate the random quotes:
+This project utilizes the Quoatable API by @lukePeavey:
 https://github.com/lukePeavey/quotable
